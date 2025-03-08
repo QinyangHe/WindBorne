@@ -1,0 +1,71 @@
+/* Additional styles for the WindBorne Balloon Tracker */
+
+/* Button styles */
+button {
+    background-color: #4285F4;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 8px;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #3367D6;
+}
+
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+/* Slider styles */
+input[type="range"] {
+    width: 100%;
+    margin: 10px 0;
+}
+
+/* Control panel styles */
+.time-control,
+.marker-size-control {
+    margin-top: 1rem;
+    padding: 0.5rem;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+/* Loading indicator */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border-top-color: #4285F4;
+    animation: spin 1s ease-in-out infinite;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .content {
+        flex-direction: column;
+    }
+    
+    #map {
+        height: 70vh;
+    }
+    
+    .sidebar {
+        min-width: 100%;
+    }
+} 
