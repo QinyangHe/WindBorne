@@ -15,6 +15,9 @@
             integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
             crossorigin=""></script>
     
+    <!-- Chart.js for statistics visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/static/css/style.css">
     
@@ -49,16 +52,9 @@
             background-color: #f5f5f5;
             padding: 1rem;
             overflow-y: auto;
-            min-width: 250px;
+            min-width: 280px;
         }
-        .time-control {
-            margin-top: 1rem;
-            padding: 0.5rem;
-            background-color: white;
-            border-radius: 5px;
-            box-shadow: 0 0 5px rgba(0,0,0,0.1);
-        }
-        .balloon-info {
+        .time-control, .marker-size-control, .balloon-info, .stats-control, .stats-display {
             margin-top: 1rem;
             padding: 0.5rem;
             background-color: white;
@@ -91,6 +87,55 @@
             border-radius: 50%;
             margin-right: 8px;
         }
+        .stat-select {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        .stat-value {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        .chart-container {
+            position: relative;
+            height: 200px;
+            margin-top: 10px;
+        }
+        .stats-tabs {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        .stats-tab {
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            background-color: #f8f8f8;
+            cursor: pointer;
+        }
+        .stats-tab.active {
+            background-color: #4285F4;
+            color: white;
+            border-color: #4285F4;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+        .stat-label {
+            font-size: 0.9rem;
+        }
+        .stat-value {
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -112,10 +157,6 @@
                         <input type="range" id="timeSlider" min="0" max="23" value="0" step="1">
                         <span id="timeDisplay">Current</span>
                     </div>
-                    <div>
-                        <button id="playButton">Play Animation</button>
-                        <button id="stopButton" disabled>Stop</button>
-                    </div>
                 </div>
                 
                 <div class="marker-size-control">
@@ -124,6 +165,47 @@
                         <label for="markerSizeSlider">Balloon Marker Size:</label>
                         <input type="range" id="markerSizeSlider" min="1" max="10" value="3" step="1">
                         <span id="markerSizeDisplay">3</span>
+                    </div>
+                </div>
+                
+                <!-- New Statistics Control Panel -->
+                <div class="stats-control">
+                    <h3>Statistical Analysis</h3>
+                    <select id="statisticsSelector" class="stat-select">
+                        <option value="basic">Basic Statistics</option>
+                        <option value="altitude">Altitude Analysis</option>
+                        <option value="coverage">Geographic Coverage</option>
+                        <option value="density">Density Analysis</option>
+                        <option value="clusters">Clustering</option>
+                    </select>
+                    <div id="visualizeOption">
+                        <label>
+                            <input type="checkbox" id="visualizeStats"> 
+                            Visualize on map
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Statistics Display Area -->
+                <div class="stats-display" id="statsDisplay">
+                    <div class="stats-tabs">
+                        <div class="stats-tab active" data-tab="numbers">Numbers</div>
+                        <div class="stats-tab" data-tab="chart">Chart</div>
+                    </div>
+                    
+                    <div class="tab-content active" id="numbersTab">
+                        <div id="statsContent">
+                            <!-- Statistics will be displayed here -->
+                            <div class="stat-row">
+                                <span class="stat-label">Select a statistic type above to view analysis</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="chartTab">
+                        <div class="chart-container">
+                            <canvas id="statsChart"></canvas>
+                        </div>
                     </div>
                 </div>
                 
@@ -146,10 +228,6 @@
                     <div class="legend-item">
                         <div class="legend-color" style="background-color: #EA4335;"></div>
                         <div>Selected Time</div>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-color" style="background-color: #FBBC05;"></div>
-                        <div>Path Trace</div>
                     </div>
                 </div>
             </div>
