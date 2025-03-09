@@ -1,0 +1,5 @@
+theme: jekyll-theme-minimal
+title: WindBorne
+description: Documentation for the WindBorne project
+baseurl: ""
+url: "" 
