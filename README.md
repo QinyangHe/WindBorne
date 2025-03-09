@@ -1,18 +1,48 @@
 # WindBorne Balloon Constellation Tracker
 
-An interactive web application that visualizes the positions of WindBorne's global sounding balloons on a 2D map. The application fetches data from WindBorne's API and displays the balloon positions from the past 24 hours.
+An interactive web application that visualizes the positions of WindBorne's global sounding balloons on a 2D map with advanced statistical analysis capabilities. The application fetches data from WindBorne's API and displays the balloon positions from the past 24 hours, along with powerful analytical tools to derive operational insights.
 
 ## Why This Project?
 
-This project was chosen because it provides valuable operational insights into the global distribution and movement patterns of WindBorne's balloon constellation. By visualizing the balloon positions on an interactive map and tracking their movements over time, operators can:
+This project provides valuable operational insights into the global distribution and movement patterns of WindBorne's balloon constellation. By visualizing the balloon positions on an interactive map and offering sophisticated statistical analysis tools, operators can:
 
 1. Monitor the current status of the entire balloon fleet
-2. Track historical paths of individual balloons
-3. Identify patterns in balloon movement and positioning
-4. Quickly spot anomalies or issues with specific balloons
-5. Understand global coverage at a glance
+2. Analyze altitude distributions across the global constellation
+3. Evaluate geographic coverage and identify gaps
+4. Understand density patterns and clustering behaviors
+5. Make data-driven operational decisions based on constellation statistics
+6. Track historical positions over a 24-hour period
+7. Identify regional patterns in balloon distribution
 
-The ability to see the constellation's evolution over a 24-hour period is particularly valuable for operational decision-making and planning.
+## Statistical Analysis Features
+
+The application includes several sophisticated analytical modules:
+
+### Altitude Analysis
+- **Altitude Distribution**: Visualize the statistical distribution of balloon altitudes
+- **Regional Altitude Comparison**: Compare average altitudes across different regions
+- **Altitude Trends**: Track how mean and median altitudes change over time
+- **Interactive Charts**: Histogram and trend visualizations for altitude data
+- **Altitude Map Visualization**: Color-coded visualization of balloon altitudes
+
+### Geographic Coverage Analysis
+- **Global Coverage Metrics**: Coverage percentage and distribution statistics
+- **Coverage Gap Detection**: Identification of areas with limited balloon coverage
+- **Regional Distribution Analysis**: Compare coverage across hemispheres and latitudinal bands
+- **Grid-Based Coverage Visualization**: Visual representation of covered vs. uncovered areas
+
+### Density Analysis
+- **Balloon Density Metrics**: Calculate and visualize balloon density across regions
+- **Clustering Detection**: Identify natural clusters in balloon distribution
+- **Isolation Metrics**: Measure the isolation of individual balloons
+- **Density Heatmap**: Visual representation of balloon concentration
+
+### K-Means Clustering
+- **Optimal Cluster Detection**: Automatically find the optimal number of clusters
+- **Silhouette Analysis**: Evaluate the quality of cluster formation
+- **Cluster Visualization**: Color-coded display of balloon clusters
+- **Boundary Detection**: Draw convex hulls around detected clusters
+- **Statistical Evaluation**: Calculate metrics like variance explained and inter-cluster distances
 
 ## Robust Data Handling Solution
 
@@ -43,23 +73,33 @@ The WindBorne API occasionally returns corrupted or malformed JSON data. We've i
 
 This approach ensures that users get the maximum available data even when the API returns imperfect responses, providing a more complete view of the balloon constellation.
 
-## Features
+## User Interface Features
 
-- Interactive 2D map using Leaflet
-- Displays balloon positions from the past 24 hours
-- Allows time-based exploration with a slider control
-- Animation feature to visualize balloon movement over time
-- Path tracing to show the trajectory of individual balloons
-- Robust handling of corrupted API data
-- Auto-refreshing data every 5 minutes
-- Responsive design for both desktop and mobile views
+- **Modern, Professional Design**: Styled after WindBorne Systems' corporate aesthetic
+- **Responsive Layout**: Adapts to different screen sizes and devices
+- **Interactive Map Controls**:
+  - Time-based exploration with an intuitive slider
+  - Customizable marker size with a dedicated slider
+  - Statistical visualization toggle
+  - English language labels worldwide
+- **Dynamic Data Visualization**:
+  - Interactive charts with Chart.js
+  - Color-coded map overlays
+  - Comprehensive legends
+  - Scrollable data displays
+- **Intuitive Navigation**:
+  - Tabbed interface for statistics (Numbers/Charts)
+  - Clear section organization
+  - Consistent visual hierarchy
 
 ## Technology Stack
 
-- Backend: Python with FastAPI
-- Frontend: HTML, CSS, JavaScript
-- Map Library: Leaflet.js
-- API Client: HTTPX (async HTTP client)
+- **Backend**: Python with FastAPI
+- **Frontend**: HTML, CSS, JavaScript
+- **Map Library**: Leaflet.js with CartoDB base maps
+- **Charting**: Chart.js for statistical visualizations
+- **API Client**: HTTPX (async HTTP client)
+- **Data Processing**: NumPy-like algorithms implemented in pure JavaScript
 
 ## Setup and Installation
 
@@ -79,25 +119,24 @@ This approach ensures that users get the maximum available data even when the AP
 - `/`: Main application interface
 - `/api/balloons`: Returns balloon data for the past 24 hours
 
-## Usage
+## Usage Guide
 
+### Basic Navigation
 - Use the time slider to view balloon positions at different times
-- Click the "Play Animation" button to see how balloons move over time
-- Click on a balloon marker to see detailed information and its path over time
-- The sidebar displays information about the number of balloons and any corrupted data points
+- Adjust the marker size slider to customize the appearance of balloons
+- Click on any balloon marker to view its detailed information
 
-## Deployment
+### Statistical Analysis
+1. Select an analysis type from the dropdown (Basic, Altitude, Coverage, Density, Clustering)
+2. Check "Visualize on map" to display the analysis visually on the map
+3. Switch between "Numbers" and "Chart" tabs to view different representations
+4. Explore specific metrics relevant to each analysis type
 
-To deploy this application to a public URL, you can use services like:
+### Map Interaction
+- Pan and zoom the map to explore different regions
+- View map in English regardless of geographic region
+- Use the legend to interpret color-coded markers and overlays
 
-- Heroku
-- Vercel
-- Render
-- Railway
-- Google Cloud Run
-- AWS Elastic Beanstalk
-
-Follow the deployment instructions for your chosen platform, making sure to set the appropriate environment variables if needed.
 
 ## Contributing
 

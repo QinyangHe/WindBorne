@@ -1,41 +1,286 @@
-/* Additional styles for the WindBorne Balloon Tracker */
+/* WindBorne Balloon Tracker - Styled after windbornesystems.com */
+
+:root {
+    /* WindBorne color palette */
+    --wb-dark-blue: #00284d;
+    --wb-blue: #0057a8;
+    --wb-light-blue: #2a9df4;
+    --wb-accent: #ff6e40;
+    --wb-light-gray: #f7f9fc;
+    --wb-gray: #e2e8f0;
+    --wb-dark-gray: #4a5568;
+    --wb-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* Global styles */
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: var(--wb-font-sans);
+    color: var(--wb-dark-blue);
+    background-color: var(--wb-light-gray);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.header {
+    background-color: var(--wb-dark-blue);
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header-logo {
+    height: 40px;
+    margin-right: 15px;
+}
+
+.header h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.content {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+#map {
+    flex: 3;
+    height: 100%;
+    z-index: 1;
+}
+
+.sidebar {
+    flex: 1;
+    background-color: white;
+    padding: 1.5rem;
+    overflow-y: auto;
+    min-width: 320px;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.05);
+    z-index: 2;
+}
+
+.sidebar h2 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    color: var(--wb-dark-blue);
+    border-bottom: 2px solid var(--wb-light-blue);
+    padding-bottom: 0.5rem;
+}
+
+.sidebar h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 0.8rem;
+    color: var(--wb-dark-blue);
+}
+
+/* Panel styles */
+.time-control, 
+.marker-size-control, 
+.balloon-info, 
+.stats-control, 
+.stats-display {
+    margin-bottom: 1.5rem;
+    padding: 1.2rem;
+    background-color: var(--wb-light-gray);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.time-control:hover, 
+.marker-size-control:hover, 
+.stats-control:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
 
 /* Button styles */
 button {
-    background-color: #4285F4;
+    background-color: var(--wb-blue);
     color: white;
     border: none;
     padding: 8px 16px;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
     margin-right: 8px;
     font-size: 14px;
-    transition: background-color 0.3s;
+    font-weight: 500;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 button:hover {
-    background-color: #3367D6;
+    background-color: var(--wb-light-blue);
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: none;
 }
 
 button:disabled {
-    background-color: #cccccc;
+    background-color: var(--wb-gray);
+    color: var(--wb-dark-gray);
     cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
 }
 
 /* Slider styles */
 input[type="range"] {
     width: 100%;
     margin: 10px 0;
+    -webkit-appearance: none;
+    height: 8px;
+    border-radius: 4px;
+    background: var(--wb-gray);
+    outline: none;
 }
 
-/* Control panel styles */
-.time-control,
-.marker-size-control {
-    margin-top: 1rem;
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--wb-blue);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+    background: var(--wb-light-blue);
+    transform: scale(1.1);
+}
+
+/* Select styles */
+select.stat-select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 12px;
+    border-radius: 6px;
+    border: 1px solid var(--wb-gray);
+    background-color: white;
+    font-family: var(--wb-font-sans);
+    font-size: 14px;
+    color: var(--wb-dark-blue);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s;
+}
+
+select.stat-select:focus {
+    border-color: var(--wb-light-blue);
+    box-shadow: 0 0 0 2px rgba(42, 157, 244, 0.2);
+    outline: none;
+}
+
+/* Stats display styles */
+.stats-tabs {
+    display: flex;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.stats-tab {
+    flex: 1;
+    padding: 8px 10px;
+    background-color: var(--wb-gray);
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.stats-tab:first-child {
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+
+.stats-tab:last-child {
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+.stats-tab.active {
+    background-color: var(--wb-blue);
+    color: white;
+}
+
+.tab-content {
+    display: none;
     padding: 0.5rem;
     background-color: white;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    border-radius: 6px;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--wb-light-gray);
+}
+
+.stat-row:last-child {
+    border-bottom: none;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: var(--wb-dark-gray);
+}
+
+.stat-value {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--wb-dark-blue);
+}
+
+/* Chart container */
+.chart-container {
+    position: relative;
+    height: 240px;
+    margin-top: 10px;
+    background-color: white;
+    border-radius: 6px;
+    padding: 10px;
+}
+
+/* Error notice */
+.corrupted-notice {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: rgba(255, 110, 64, 0.1);
+    color: var(--wb-accent);
+    border-left: 4px solid var(--wb-accent);
+    border-radius: 4px;
+    display: none;
+    font-weight: 500;
 }
 
 /* Loading indicator */
@@ -45,7 +290,7 @@ input[type="range"] {
     height: 20px;
     border: 3px solid rgba(0, 0, 0, 0.1);
     border-radius: 50%;
-    border-top-color: #4285F4;
+    border-top-color: var(--wb-light-blue);
     animation: spin 1s ease-in-out infinite;
     margin-right: 10px;
     vertical-align: middle;
@@ -55,17 +300,193 @@ input[type="range"] {
     to { transform: rotate(360deg); }
 }
 
+/* Legend styles */
+.legend {
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+}
+
+.legend h3 {
+    margin-top: 0;
+    font-size: 1rem;
+    margin-bottom: 12px;
+    color: var(--wb-dark-blue);
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.legend-color {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    margin-right: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Checkbox styles */
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--wb-gray);
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+    margin-right: 8px;
+    position: relative;
+    vertical-align: middle;
+}
+
+input[type="checkbox"]:checked {
+    background-color: var(--wb-blue);
+    border-color: var(--wb-blue);
+}
+
+input[type="checkbox"]:checked::before {
+    content: "✓";
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 12px;
+}
+
+#visualizeOption {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+
+#visualizeOption label {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: var(--wb-dark-gray);
+}
+
 /* Responsive styles */
-@media (max-width: 768px) {
+@media (max-width: 992px) {
     .content {
         flex-direction: column;
     }
     
     #map {
-        height: 70vh;
+        height: 60vh;
     }
     
     .sidebar {
         min-width: 100%;
+        padding: 1rem;
     }
+    
+    .header h1 {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    #map {
+        height: 50vh;
+    }
+    
+    .time-control, 
+    .marker-size-control, 
+    .balloon-info, 
+    .stats-control, 
+    .stats-display {
+        padding: 0.8rem;
+    }
+    
+    .header-logo {
+        height: 30px;
+    }
+    
+    .stat-row {
+        flex-direction: column;
+    }
+    
+    .stat-value {
+        margin-top: 3px;
+    }
+}
+
+/* Leaflet customizations */
+.leaflet-control-zoom {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+.leaflet-control-zoom a {
+    background-color: white !important;
+    color: var(--wb-dark-blue) !important;
+    transition: all 0.2s;
+}
+
+.leaflet-control-zoom a:hover {
+    background-color: var(--wb-light-gray) !important;
+    color: var(--wb-blue) !important;
+}
+
+.leaflet-popup-content-wrapper {
+    border-radius: 8px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+}
+
+.leaflet-popup-content {
+    margin: 12px 16px;
+}
+
+.leaflet-popup-tip {
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Footer styles */
+.footer {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--wb-dark-gray);
+    padding-top: 15px;
+    border-top: 1px solid var(--wb-light-gray);
+}
+
+.footer a {
+    color: var(--wb-blue);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.footer a:hover {
+    color: var(--wb-light-blue);
+    text-decoration: underline;
+}
+
+/* Slider values layout */
+.slider-values {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5px;
+    font-size: 0.8rem;
+    color: var(--wb-dark-gray);
+}
+
+.slider-values span:nth-child(2) {
+    font-weight: 600;
+    color: var(--wb-dark-blue);
+    padding: 2px 8px;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 } 

@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WindBorne Balloon Tracker</title>
     
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
           integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
@@ -140,22 +145,27 @@
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1>WindBorne Balloon Constellation Tracker</h1>
-        </div>
+        <header class="header">
+            <img src="/static/img/windborne-logo.svg" alt="WindBorne Systems" class="header-logo">
+            <h1>Balloon Constellation Tracker</h1>
+        </header>
         
         <div class="content">
             <div id="map"></div>
             
             <div class="sidebar">
-                <h2>Balloon Tracker Controls</h2>
+                <h2>Tracker Controls</h2>
                 
                 <div class="time-control">
-                    <h3>Time Controls</h3>
+                    <h3>Time Selection</h3>
                     <div>
                         <label for="timeSlider">Time (hours ago):</label>
                         <input type="range" id="timeSlider" min="0" max="23" value="0" step="1">
-                        <span id="timeDisplay">Current</span>
+                        <div class="slider-values">
+                            <span>Current</span>
+                            <span id="timeDisplay">Current</span>
+                            <span>24h ago</span>
+                        </div>
                     </div>
                 </div>
                 
@@ -164,11 +174,15 @@
                     <div>
                         <label for="markerSizeSlider">Balloon Marker Size:</label>
                         <input type="range" id="markerSizeSlider" min="1" max="10" value="3" step="1">
-                        <span id="markerSizeDisplay">3</span>
+                        <div class="slider-values">
+                            <span>Small</span>
+                            <span id="markerSizeDisplay">3</span>
+                            <span>Large</span>
+                        </div>
                     </div>
                 </div>
                 
-                <!-- New Statistics Control Panel -->
+                <!-- Statistics Control Panel -->
                 <div class="stats-control">
                     <h3>Statistical Analysis</h3>
                     <select id="statisticsSelector" class="stat-select">
@@ -222,13 +236,17 @@
                 <div class="legend">
                     <h3>Legend</h3>
                     <div class="legend-item">
-                        <div class="legend-color" style="background-color: #4285F4;"></div>
-                        <div>Current Hour</div>
+                        <div class="legend-color" style="background-color: var(--wb-blue);"></div>
+                        <div>Current Hour Balloons</div>
                     </div>
                     <div class="legend-item">
-                        <div class="legend-color" style="background-color: #EA4335;"></div>
-                        <div>Selected Time</div>
+                        <div class="legend-color" style="background-color: var(--wb-accent);"></div>
+                        <div>Selected Time Balloons</div>
                     </div>
+                </div>
+                
+                <div class="footer">
+                    <p>Powered by <a href="https://windbornesystems.com" target="_blank">WindBorne Systems</a></p>
                 </div>
             </div>
         </div>

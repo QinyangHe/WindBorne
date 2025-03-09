@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60">
+  <style>
+    .wb-dark-blue { fill: #00284d; }
+    .wb-blue { fill: #0057a8; }
+    .wb-light-blue { fill: #2a9df4; }
+  </style>
+  <g>
+    <!-- Balloon icon -->
+    <path class="wb-blue" d="M30,10 C20,10 15,18 15,25 C15,35 25,42 30,50 C35,42 45,35 45,25 C45,18 40,10 30,10 Z" />
+    <circle class="wb-light-blue" cx="30" cy="25" r="5" />
+    <path class="wb-dark-blue" d="M27,50 L33,50 L33,55 L27,55 Z" />
+    <!-- Lines representing wind -->
+    <path class="wb-light-blue" d="M55,15 L80,15" stroke-width="3" stroke-linecap="round" />
+    <path class="wb-light-blue" d="M50,25 L75,25" stroke-width="3" stroke-linecap="round" />
+    <path class="wb-light-blue" d="M55,35 L80,35" stroke-width="3" stroke-linecap="round" />
+  </g>
+  <!-- Text -->
+  <text x="90" y="30" font-family="Arial, sans-serif" font-weight="bold" font-size="18" class="wb-dark-blue">WindBorne</text>
+  <text x="90" y="45" font-family="Arial, sans-serif" font-size="12" class="wb-blue">SYSTEMS</text>
+</svg> 
