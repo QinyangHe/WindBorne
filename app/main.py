@@ -1,6 +1,7 @@
 import json
 import logging
 import math
+import os
 import re
 from datetime import datetime, timedelta
 from typing import Dict, List, Optional, Tuple, Union
@@ -22,11 +23,15 @@ logger = logging.getLogger(__name__)
 
 app = FastAPI(title="WindBorne Balloon Tracker")
 
+# Determine static and template directories based on environment
+static_dir = os.environ.get("STATIC_DIR", "app/static")
+templates_dir = os.environ.get("TEMPLATES_DIR", "app/templates")
+
 # Mount static files
-app.mount("/static", StaticFiles(directory="app/static"), name="static")
+app.mount("/static", StaticFiles(directory=static_dir), name="static")
 
 # Set up templates
-templates = Jinja2Templates(directory="app/templates")
+templates = Jinja2Templates(directory=templates_dir)
 
 # Base URL for the WindBorne API
 BASE_URL = "https://a.windbornesystems.com/treasure"
