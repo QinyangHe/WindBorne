@@ -6,7 +6,7 @@
 
 ---
 
-An interactive web application that visualizes the positions of WindBorne's global sounding balloons on a 2D map with advanced statistical analysis capabilities. The application fetches data from WindBorne's API and displays the balloon positions from the past 24 hours, along with powerful analytical tools to derive operational insights.
+An interactive web application that visualizes the positions of WindBorne's global sounding balloons on a 2D map with advanced statistical analysis capabilities. The application fetches data from WindBorne's API and displays the balloon positions from the past 24 hours, along with powerful analytical tools to derive operational insights. The deployment at Vercel can be found here [https://wind-borne-lilac.vercel.app/](https://wind-borne-lilac.vercel.app/)
 
 ## 🔍 Why This Project?
 
